@@ -12,7 +12,7 @@ import CoreLocation
 class Location : NSObject, CLLocationManagerDelegate {
     
     private var min: NSTimeInterval = 5
-    private var accuracy: CLLocationAccuracy = kCLLocationAccuracyBest
+    private var accuracy: CLLocationAccuracy = kCLLocationAccuracyBestForNavigation
     
     private var timer = NSTimer()
     

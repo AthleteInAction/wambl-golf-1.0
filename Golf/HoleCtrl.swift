@@ -7,30 +7,33 @@
 //
 
 import UIKit
+import MapKit
 
-class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource,MKMapViewDelegate {
     
     var round: PFObject!
     
+    @IBOutlet weak var map: MKMapView!
     var hole_number: Int!
     @IBOutlet weak var par: UISegmentedControl!
     var parIndex: Int!
     @IBOutlet weak var set: UIButton!
     @IBOutlet weak var loader: UIActivityIndicatorView!
-    @IBOutlet weak var table: UITableView!
+//    @IBOutlet weak var table: UITableView!
     @IBOutlet weak var scoreTxt: UILabel!
     var score: Int = 0
     var strokes: [PFObject] = []
     
-    var location = Location(_accuracy: kCLLocationAccuracyBestForNavigation, _timeout: 20)
+    var location = Location(_accuracy: kCLLocationAccuracyBestForNavigation, _timeout: 5)
     
     override func viewDidLoad(){
         super.viewDidLoad()
         
         title = "\(hole_number)"
+        map.showsUserLocation = true
         
-        table.delegate = self
-        table.dataSource = self
+//        table.delegate = self
+//        table.dataSource = self
         
         parIndex = ((round["pars"] as Array<Int>)[hole_number-1]-3)
         if parIndex > -1 && parIndex <= 2 {
@@ -48,11 +51,27 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
             
             if !(error != nil) {
                 
+                var maxLong: CFloat!
+                var minLong: CFloat!
+                
                 for object in objects {
                     
                     var stroke = object as PFObject
+                    var p = stroke["point"] as PFGeoPoint
                     
                     self.strokes.append(stroke)
+                    
+                    var location = CLLocationCoordinate2D(
+                        latitude: p.latitude,
+                        longitude: p.longitude
+                    )
+                    
+                    var annotation = MKPointAnnotation()
+                    annotation.setCoordinate(location)
+                    annotation.title = "Roatan"
+                    annotation.subtitle = "Honduras"
+                    
+                    self.map.addAnnotation(annotation)
                     
                 }
                 
@@ -65,7 +84,7 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 
             }
             
-            self.table.reloadData()
+//            self.table.reloadData()
             
         }
         
@@ -149,7 +168,7 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
         loader.startAnimating()
         set.hidden = true
         
-        location.get { (location, error) -> () in
+        location.get { (location, e1) -> () in
             
             if let loc = location {
                 
@@ -178,13 +197,22 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
                     self.loader.stopAnimating()
                     self.set.hidden = false
                     
-                    self.table.reloadData()
+//                    self.table.reloadData()
                     
                 })
                 
-            } else if let err = error {
+            } else if let err = e1 {
                 
-                Error.report(user: PFUser.currentUser(), error: err, alert: true)
+                // ALERT USER TO ERROR
+                var errorAlert = UIAlertController(title: "Error", message: "GPS took too long.", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                errorAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+                    
+                    
+                    
+                }))
+                
+                self.presentViewController(errorAlert, animated: true, completion: nil)
                 
                 self.loader.stopAnimating()
                 self.set.hidden = false
