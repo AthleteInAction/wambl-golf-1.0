@@ -23,6 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if PFUser.currentUser() != nil {
             
             // USER IS LOGGED IN
+            
+            let googleMapsApiKey = "AIzaSyDiFHDP8iv0kYMVcsMjJf4ZNECD3orfyRc"
+            GMSServices.provideAPIKey(googleMapsApiKey)
+            
+            
             var newStoryboard = UIStoryboard(name: "WamblIn", bundle: nil)
             var vc = newStoryboard.instantiateViewControllerWithIdentifier("dashboard_ctrl") as DashboardCtrl
             var nav = UINavigationController(rootViewController: vc)

@@ -17,7 +17,7 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
     var parIndex: Int!
     @IBOutlet weak var set: UIButton!
     @IBOutlet weak var loader: UIActivityIndicatorView!
-    @IBOutlet weak var table: UITableView!
+//    @IBOutlet weak var table: UITableView!
     @IBOutlet weak var scoreTxt: UILabel!
     var score: Int = 0
     var strokes: [PFObject] = []
@@ -29,8 +29,8 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
         
         title = "\(hole_number)"
         
-        table.delegate = self
-        table.dataSource = self
+//        table.delegate = self
+//        table.dataSource = self
         
         parIndex = ((round["pars"] as Array<Int>)[hole_number-1]-3)
         if parIndex > -1 && parIndex <= 2 {
@@ -65,7 +65,7 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 
             }
             
-            self.table.reloadData()
+//            self.table.reloadData()
             
         }
         
@@ -178,7 +178,7 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
                     self.loader.stopAnimating()
                     self.set.hidden = false
                     
-                    self.table.reloadData()
+//                    self.table.reloadData()
                     
                 })
                 
