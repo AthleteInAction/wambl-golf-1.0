@@ -14,9 +14,11 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     var hole_number: Int!
     @IBOutlet weak var par: UISegmentedControl!
+    var parIndex: Int!
     @IBOutlet weak var set: UIButton!
     @IBOutlet weak var loader: UIActivityIndicatorView!
     @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var scoreTxt: UILabel!
     var score: Int = 0
     var strokes: [PFObject] = []
     
@@ -28,7 +30,44 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
         title = "\(hole_number)"
         
         table.delegate = self
-        self.table.reloadData()
+        table.dataSource = self
+        
+        parIndex = ((round["pars"] as Array<Int>)[hole_number-1]-3)
+        if parIndex > -1 && parIndex <= 2 {
+            par.selectedSegmentIndex = parIndex
+        }
+        
+        var query = PFQuery(className:"Strokes")
+        
+        query.whereKey("round", equalTo: round)
+        query.whereKey("hole", equalTo: hole_number)
+        query.whereKey("user", equalTo: PFUser.currentUser())
+        
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [AnyObject]!, error: NSError!) -> Void in
+            
+            if !(error != nil) {
+                
+                for object in objects {
+                    
+                    var stroke = object as PFObject
+                    
+                    self.strokes.append(stroke)
+                    
+                }
+                
+                self.score = objects.count
+                self.scoreTxt.text = "Score: \(self.score)"
+                
+            } else {
+                
+                Error.report(user: PFUser.currentUser(), error: error, alert: true)
+                
+            }
+            
+            self.table.reloadData()
+            
+        }
         
     }
 
@@ -67,11 +106,41 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
+        let stroke = strokes[indexPath.row] as PFObject
         
-        cell.textLabel?.text = strokes[indexPath.row]["objectId"] as? String
-//        cell.detailTextLabel?.text = stokes[indexPath.row][""] as? String
+        cell.textLabel?.text = stroke.objectId
+        var p = stroke["point"] as PFGeoPoint
+        cell.detailTextLabel?.text = "\(p.longitude) : \(p.latitude)"
         
         return cell
+        
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if editingStyle == .Delete {
+            
+            let stroke = strokes[indexPath.row]
+            
+            stroke.deleteInBackgroundWithBlock({ (success: Bool, error: NSError!) -> Void in
+                
+                if success {
+                    
+                    self.strokes.removeAtIndex(indexPath.row)
+                    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                    
+                    self.score = self.strokes.count
+                    self.scoreTxt.text = "Score: \(self.score)"
+                    
+                } else {
+                    
+                    Error.report(user: PFUser.currentUser(), error: error, alert: true)
+                    
+                }
+                
+            })
+            
+        }
         
     }
     
@@ -84,29 +153,25 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
             
             if let loc = location {
                 
-                println(loc)
-                
                 var stroke = PFObject(className:"Strokes")
+                
                 stroke["user"] = PFUser.currentUser()
+                stroke["round"] = self.round
                 stroke["hole"] = self.hole_number
                 stroke["par"] = (self.par.selectedSegmentIndex+3)
                 stroke["point"] = PFGeoPoint(latitude: loc.coordinate.latitude, longitude: loc.coordinate.longitude)
-                
-                var relation: PFRelation = self.round.relationForKey("strokes")
-                relation.addObject(stroke)
-                
-                self.round.saveInBackgroundWithBlock {
-                    (success: Bool, error: NSError!) -> Void in
+            
+                stroke.saveInBackgroundWithBlock({ (success: Bool, error: NSError!) -> Void in
                     
                     if success {
                         
                         self.strokes.append(stroke)
+                        self.score = self.strokes.count
+                        self.scoreTxt.text = "Score: \(self.score)"
                         
                     } else {
                         
-                        var code = error.userInfo?["code"] as Int
-                        
-                        Error.report(user: nil, error: error, alert: true)
+                        Error.report(user: PFUser.currentUser(), error: error, alert: true)
                         
                     }
                     
@@ -115,11 +180,11 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
                     
                     self.table.reloadData()
                     
-                }
+                })
                 
             } else if let err = error {
                 
-                println(err)
+                Error.report(user: PFUser.currentUser(), error: err, alert: true)
                 
                 self.loader.stopAnimating()
                 self.set.hidden = false
@@ -128,18 +193,29 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
             
         }
         
+    }
+    
+    @IBAction func parChanged(sender: UISegmentedControl){
         
+        var tmp = round["pars"] as Array<Int>
         
+        tmp[hole_number-1] = sender.selectedSegmentIndex+3
         
+        round["pars"] = tmp
         
-//        gameScore.saveInBackgroundWithBlock {
-//            (success: Bool, error: NSError!) -> Void in
-//            if (success) {
-//                // The object has been saved.
-//            } else {
-//                // There was a problem, check error.description
-//            }
-//        }
+        round.saveInBackgroundWithBlock { (success: Bool, error: NSError!) -> Void in
+            
+            if success {
+                
+                
+                
+            } else {
+                
+                Error.report(user: PFUser.currentUser(), error: error, alert: true)
+                
+            }
+            
+        }
         
     }
     

@@ -14,33 +14,22 @@ class Error {
         pf_error["code"] = code
         pf_error["error"] = error_string
         
-        pf_error.saveInBackgroundWithBlock({ (success: Bool, lerror: NSError!) -> Void in
+        if _alert {
             
-            if success {
-                
-                NSLog("Error Reported")
-                if _alert {
-                    
-                    // ALERT USER TO ERROR
-                    var errorAlert = UIAlertController(title: "Error", message: error_string, preferredStyle: UIAlertControllerStyle.Alert)
-                    
-                    errorAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
-                        
-                        
-                        
-                    }))
-                    
-                    root.rootViewController?.presentViewController(errorAlert, animated: true, completion: nil)
-                    
-                }
-                
-            } else {
-                
-                NSLog("Report Error")
-                
-            }
+            // ALERT USER TO ERROR
+            var errorAlert = UIAlertController(title: "Error", message: error_string, preferredStyle: UIAlertControllerStyle.Alert)
             
-        })
+            errorAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+                
+                
+                
+            }))
+            
+            root.rootViewController?.presentViewController(errorAlert, animated: true, completion: nil)
+            
+        }
+        
+        pf_error.saveEventually {(success: Bool, e: NSError?) -> Void in}
         
     }
     

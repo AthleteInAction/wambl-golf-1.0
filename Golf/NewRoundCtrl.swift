@@ -54,6 +54,7 @@ class NewRoundCtrl: UIViewController {
             round["course"] = course.text
             round["date"] = roundDate.date as NSDate
             round["user"] = PFUser.currentUser()
+            round["pars"] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             
             round.saveInBackgroundWithBlock {
                 (success: Bool, error: NSError!) -> Void in

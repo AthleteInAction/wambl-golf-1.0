@@ -165,6 +165,9 @@
                                     <segment title="Par 4"/>
                                     <segment title="Par 5"/>
                                 </segments>
+                                <connections>
+                                    <action selector="parChanged:" destination="7v1-ND-6Q2" eventType="valueChanged" id="h72-2Z-KHX"/>
+                                </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WSf-wd-l1s">
                                 <rect key="frame" x="16" y="124" width="115" height="30"/>
@@ -193,11 +196,25 @@
                                 <rect key="frame" x="16" y="168" width="288" height="400"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="0gR-lA-mYU">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="qZB-5T-pQZ" detailTextLabel="OOa-3d-CDY" style="IBUITableViewCellStyleSubtitle" id="0gR-lA-mYU">
                                         <rect key="frame" x="0.0" y="0.0" width="288" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0gR-lA-mYU" id="zwD-XD-fAS">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qZB-5T-pQZ">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OOa-3d-CDY">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -234,6 +251,7 @@
                     <connections>
                         <outlet property="loader" destination="pz1-2b-tJg" id="UIO-4c-ykt"/>
                         <outlet property="par" destination="QNu-he-HuK" id="9af-pD-uRl"/>
+                        <outlet property="scoreTxt" destination="9GM-h7-uGv" id="Ahq-zB-OYR"/>
                         <outlet property="set" destination="WSf-wd-l1s" id="y37-K7-SJd"/>
                         <outlet property="table" destination="4zM-dQ-1DU" id="8zm-rq-IgL"/>
                     </connections>
@@ -264,7 +282,6 @@
         <!--Navigation Controller-->
         <scene sceneID="yCK-XJ-vtg">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="C9h-4H-UcR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Rzz-PY-hpv" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -277,6 +294,7 @@
                         <segue destination="A9E-SE-UiX" kind="relationship" relationship="rootViewController" id="Std-Pb-Ya1"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C9h-4H-UcR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="984" y="-415"/>
         </scene>
