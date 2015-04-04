@@ -171,7 +171,7 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
                         
                     } else {
                         
-                        Error.report(user: PFUser.currentUser(), error: error, alert: true)
+                        
                         
                     }
                     
@@ -184,7 +184,16 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 
             } else if let err = error {
                 
-                Error.report(user: PFUser.currentUser(), error: err, alert: true)
+                // ALERT USER TO ERROR
+                var errorAlert = UIAlertController(title: "Error", message: "GPS took too long.", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                errorAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+                    
+                    
+                    
+                }))
+                
+                root.rootViewController?.presentViewController(errorAlert, animated: true, completion: nil)
                 
                 self.loader.stopAnimating()
                 self.set.hidden = false
