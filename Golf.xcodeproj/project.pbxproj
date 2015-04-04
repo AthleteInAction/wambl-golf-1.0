@@ -1,0 +1,597 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A63A24881ACF00D400DBAF58 /* SignupCtrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63A24871ACF00D400DBAF58 /* SignupCtrl.swift */; };
+		A63A248D1ACF0DD900DBAF58 /* DashboardCtrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63A248C1ACF0DD900DBAF58 /* DashboardCtrl.swift */; };
+		A63A24901ACF0FEB00DBAF58 /* NewRoundCtrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63A248F1ACF0FEB00DBAF58 /* NewRoundCtrl.swift */; };
+		A63A24931ACF294500DBAF58 /* HoleCtrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63A24921ACF294500DBAF58 /* HoleCtrl.swift */; };
+		A6E994A21ACE8EB900092FD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E994A11ACE8EB900092FD6 /* AppDelegate.swift */; };
+		A6E994A41ACE8EB900092FD6 /* SplashCtrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E994A31ACE8EB900092FD6 /* SplashCtrl.swift */; };
+		A6E994A91ACE8EB900092FD6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6E994A81ACE8EB900092FD6 /* Images.xcassets */; };
+		A6E994AC1ACE8EB900092FD6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6E994AA1ACE8EB900092FD6 /* LaunchScreen.xib */; };
+		A6E994B81ACE8EB900092FD6 /* GolfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E994B71ACE8EB900092FD6 /* GolfTests.swift */; };
+		A6E994CB1ACE977800092FD6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6E994C11ACE977800092FD6 /* AudioToolbox.framework */; };
+		A6E994CC1ACE977800092FD6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6E994C21ACE977800092FD6 /* CFNetwork.framework */; };
+		A6E994CD1ACE977800092FD6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6E994C31ACE977800092FD6 /* CoreGraphics.framework */; };
+		A6E994CE1ACE977800092FD6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6E994C41ACE977800092FD6 /* CoreLocation.framework */; };
+		A6E994CF1ACE977800092FD6 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6E994C51ACE977800092FD6 /* libz.dylib */; };
+		A6E994D01ACE977800092FD6 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6E994C61ACE977800092FD6 /* MobileCoreServices.framework */; };
+		A6E994D11ACE977800092FD6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6E994C71ACE977800092FD6 /* QuartzCore.framework */; };
+		A6E994D21ACE977800092FD6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6E994C81ACE977800092FD6 /* Security.framework */; };
+		A6E994D31ACE977800092FD6 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6E994C91ACE977800092FD6 /* StoreKit.framework */; };
+		A6E994D41ACE977800092FD6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6E994CA1ACE977800092FD6 /* SystemConfiguration.framework */; };
+		A6E994D61ACE979B00092FD6 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6E994D51ACE979B00092FD6 /* libsqlite3.dylib */; };
+		A6E994DC1ACE988400092FD6 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6E994DA1ACE988400092FD6 /* Bolts.framework */; };
+		A6E994DD1ACE988400092FD6 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6E994DB1ACE988400092FD6 /* Parse.framework */; };
+		A6E994E41ACEBFBE00092FD6 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E994E31ACEBFBE00092FD6 /* Location.swift */; };
+		A6E994E61ACEE86F00092FD6 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E994E51ACEE86F00092FD6 /* Tools.swift */; };
+		A6E994E81ACEE8D800092FD6 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E994E71ACEE8D800092FD6 /* Error.swift */; };
+		A6E994EB1ACEEC8B00092FD6 /* LoginCtrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E994EA1ACEEC8B00092FD6 /* LoginCtrl.swift */; };
+		A6E994F01ACEEF5600092FD6 /* WamblOut.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6E994EF1ACEEF5600092FD6 /* WamblOut.storyboard */; };
+		A6E994F21ACEF08800092FD6 /* WamblIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6E994F11ACEF08800092FD6 /* WamblIn.storyboard */; };
+		A6E994F51ACEF73C00092FD6 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E994F41ACEF73C00092FD6 /* Globals.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A6E994B21ACE8EB900092FD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A6E994941ACE8EB900092FD6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A6E9949B1ACE8EB900092FD6;
+			remoteInfo = Golf;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A63A24871ACF00D400DBAF58 /* SignupCtrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupCtrl.swift; sourceTree = "<group>"; };
+		A63A248C1ACF0DD900DBAF58 /* DashboardCtrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardCtrl.swift; sourceTree = "<group>"; };
+		A63A248F1ACF0FEB00DBAF58 /* NewRoundCtrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRoundCtrl.swift; sourceTree = "<group>"; };
+		A63A24921ACF294500DBAF58 /* HoleCtrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoleCtrl.swift; sourceTree = "<group>"; };
+		A6E9949C1ACE8EB900092FD6 /* Golf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Golf.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6E994A01ACE8EB900092FD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A6E994A11ACE8EB900092FD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A6E994A31ACE8EB900092FD6 /* SplashCtrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashCtrl.swift; sourceTree = "<group>"; };
+		A6E994A81ACE8EB900092FD6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A6E994AB1ACE8EB900092FD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		A6E994B11ACE8EB900092FD6 /* GolfTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GolfTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6E994B61ACE8EB900092FD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A6E994B71ACE8EB900092FD6 /* GolfTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfTests.swift; sourceTree = "<group>"; };
+		A6E994C11ACE977800092FD6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		A6E994C21ACE977800092FD6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		A6E994C31ACE977800092FD6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A6E994C41ACE977800092FD6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		A6E994C51ACE977800092FD6 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		A6E994C61ACE977800092FD6 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		A6E994C71ACE977800092FD6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A6E994C81ACE977800092FD6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		A6E994C91ACE977800092FD6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		A6E994CA1ACE977800092FD6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A6E994D51ACE979B00092FD6 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		A6E994DA1ACE988400092FD6 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		A6E994DB1ACE988400092FD6 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		A6E994DE1ACE993900092FD6 /* Golf-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Golf-Bridging-Header.h"; sourceTree = "<group>"; };
+		A6E994E31ACEBFBE00092FD6 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		A6E994E51ACEE86F00092FD6 /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
+		A6E994E71ACEE8D800092FD6 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		A6E994EA1ACEEC8B00092FD6 /* LoginCtrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCtrl.swift; sourceTree = "<group>"; };
+		A6E994EF1ACEEF5600092FD6 /* WamblOut.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WamblOut.storyboard; sourceTree = "<group>"; };
+		A6E994F11ACEF08800092FD6 /* WamblIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WamblIn.storyboard; sourceTree = "<group>"; };
+		A6E994F41ACEF73C00092FD6 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A6E994991ACE8EB900092FD6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6E994D61ACE979B00092FD6 /* libsqlite3.dylib in Frameworks */,
+				A6E994CB1ACE977800092FD6 /* AudioToolbox.framework in Frameworks */,
+				A6E994CC1ACE977800092FD6 /* CFNetwork.framework in Frameworks */,
+				A6E994DC1ACE988400092FD6 /* Bolts.framework in Frameworks */,
+				A6E994CD1ACE977800092FD6 /* CoreGraphics.framework in Frameworks */,
+				A6E994CE1ACE977800092FD6 /* CoreLocation.framework in Frameworks */,
+				A6E994DD1ACE988400092FD6 /* Parse.framework in Frameworks */,
+				A6E994CF1ACE977800092FD6 /* libz.dylib in Frameworks */,
+				A6E994D01ACE977800092FD6 /* MobileCoreServices.framework in Frameworks */,
+				A6E994D11ACE977800092FD6 /* QuartzCore.framework in Frameworks */,
+				A6E994D21ACE977800092FD6 /* Security.framework in Frameworks */,
+				A6E994D31ACE977800092FD6 /* StoreKit.framework in Frameworks */,
+				A6E994D41ACE977800092FD6 /* SystemConfiguration.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6E994AE1ACE8EB900092FD6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A63A24861ACF00B500DBAF58 /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				A63A24871ACF00D400DBAF58 /* SignupCtrl.swift */,
+			);
+			name = Signup;
+			sourceTree = "<group>";
+		};
+		A63A24891ACF01B500DBAF58 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				A63A24911ACF292F00DBAF58 /* Hole */,
+				A63A248E1ACF0FBE00DBAF58 /* NewRound */,
+				A63A248C1ACF0DD900DBAF58 /* DashboardCtrl.swift */,
+			);
+			name = Dashboard;
+			sourceTree = "<group>";
+		};
+		A63A248E1ACF0FBE00DBAF58 /* NewRound */ = {
+			isa = PBXGroup;
+			children = (
+				A63A248F1ACF0FEB00DBAF58 /* NewRoundCtrl.swift */,
+			);
+			name = NewRound;
+			sourceTree = "<group>";
+		};
+		A63A24911ACF292F00DBAF58 /* Hole */ = {
+			isa = PBXGroup;
+			children = (
+				A63A24921ACF294500DBAF58 /* HoleCtrl.swift */,
+			);
+			name = Hole;
+			sourceTree = "<group>";
+		};
+		A6E994931ACE8EB900092FD6 = {
+			isa = PBXGroup;
+			children = (
+				A6E9949E1ACE8EB900092FD6 /* Golf */,
+				A6E994B41ACE8EB900092FD6 /* GolfTests */,
+				A6E9949D1ACE8EB900092FD6 /* Products */,
+				A6E994D71ACE97C800092FD6 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A6E9949D1ACE8EB900092FD6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A6E9949C1ACE8EB900092FD6 /* Golf.app */,
+				A6E994B11ACE8EB900092FD6 /* GolfTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A6E9949E1ACE8EB900092FD6 /* Golf */ = {
+			isa = PBXGroup;
+			children = (
+				A63A24891ACF01B500DBAF58 /* Dashboard */,
+				A63A24861ACF00B500DBAF58 /* Signup */,
+				A6E994DE1ACE993900092FD6 /* Golf-Bridging-Header.h */,
+				A6E994A81ACE8EB900092FD6 /* Images.xcassets */,
+				A6E994AA1ACE8EB900092FD6 /* LaunchScreen.xib */,
+				A6E994E21ACEBFA400092FD6 /* Tools */,
+				A6E994A11ACE8EB900092FD6 /* AppDelegate.swift */,
+				A6E994E11ACE9BA100092FD6 /* Splash */,
+				A6E994E91ACEEC6B00092FD6 /* Login */,
+				A6E994F31ACEF69A00092FD6 /* Stroyboards */,
+				A6E9949F1ACE8EB900092FD6 /* Supporting Files */,
+			);
+			path = Golf;
+			sourceTree = "<group>";
+		};
+		A6E9949F1ACE8EB900092FD6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A6E994A01ACE8EB900092FD6 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A6E994B41ACE8EB900092FD6 /* GolfTests */ = {
+			isa = PBXGroup;
+			children = (
+				A6E994B71ACE8EB900092FD6 /* GolfTests.swift */,
+				A6E994B51ACE8EB900092FD6 /* Supporting Files */,
+			);
+			path = GolfTests;
+			sourceTree = "<group>";
+		};
+		A6E994B51ACE8EB900092FD6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A6E994B61ACE8EB900092FD6 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A6E994D71ACE97C800092FD6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A6E994DA1ACE988400092FD6 /* Bolts.framework */,
+				A6E994DB1ACE988400092FD6 /* Parse.framework */,
+				A6E994D51ACE979B00092FD6 /* libsqlite3.dylib */,
+				A6E994C11ACE977800092FD6 /* AudioToolbox.framework */,
+				A6E994C21ACE977800092FD6 /* CFNetwork.framework */,
+				A6E994C31ACE977800092FD6 /* CoreGraphics.framework */,
+				A6E994C41ACE977800092FD6 /* CoreLocation.framework */,
+				A6E994C51ACE977800092FD6 /* libz.dylib */,
+				A6E994C61ACE977800092FD6 /* MobileCoreServices.framework */,
+				A6E994C71ACE977800092FD6 /* QuartzCore.framework */,
+				A6E994C81ACE977800092FD6 /* Security.framework */,
+				A6E994C91ACE977800092FD6 /* StoreKit.framework */,
+				A6E994CA1ACE977800092FD6 /* SystemConfiguration.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A6E994E11ACE9BA100092FD6 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				A6E994A31ACE8EB900092FD6 /* SplashCtrl.swift */,
+			);
+			name = Splash;
+			sourceTree = "<group>";
+		};
+		A6E994E21ACEBFA400092FD6 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				A6E994E31ACEBFBE00092FD6 /* Location.swift */,
+				A6E994E51ACEE86F00092FD6 /* Tools.swift */,
+				A6E994E71ACEE8D800092FD6 /* Error.swift */,
+				A6E994F41ACEF73C00092FD6 /* Globals.swift */,
+			);
+			name = Tools;
+			sourceTree = "<group>";
+		};
+		A6E994E91ACEEC6B00092FD6 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				A6E994EA1ACEEC8B00092FD6 /* LoginCtrl.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		A6E994F31ACEF69A00092FD6 /* Stroyboards */ = {
+			isa = PBXGroup;
+			children = (
+				A6E994EF1ACEEF5600092FD6 /* WamblOut.storyboard */,
+				A6E994F11ACEF08800092FD6 /* WamblIn.storyboard */,
+			);
+			name = Stroyboards;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A6E9949B1ACE8EB900092FD6 /* Golf */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A6E994BB1ACE8EB900092FD6 /* Build configuration list for PBXNativeTarget "Golf" */;
+			buildPhases = (
+				A6E994981ACE8EB900092FD6 /* Sources */,
+				A6E994991ACE8EB900092FD6 /* Frameworks */,
+				A6E9949A1ACE8EB900092FD6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Golf;
+			productName = Golf;
+			productReference = A6E9949C1ACE8EB900092FD6 /* Golf.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A6E994B01ACE8EB900092FD6 /* GolfTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A6E994BE1ACE8EB900092FD6 /* Build configuration list for PBXNativeTarget "GolfTests" */;
+			buildPhases = (
+				A6E994AD1ACE8EB900092FD6 /* Sources */,
+				A6E994AE1ACE8EB900092FD6 /* Frameworks */,
+				A6E994AF1ACE8EB900092FD6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A6E994B31ACE8EB900092FD6 /* PBXTargetDependency */,
+			);
+			name = GolfTests;
+			productName = GolfTests;
+			productReference = A6E994B11ACE8EB900092FD6 /* GolfTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A6E994941ACE8EB900092FD6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = "Will Robinson";
+				TargetAttributes = {
+					A6E9949B1ACE8EB900092FD6 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					A6E994B01ACE8EB900092FD6 = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = A6E9949B1ACE8EB900092FD6;
+					};
+				};
+			};
+			buildConfigurationList = A6E994971ACE8EB900092FD6 /* Build configuration list for PBXProject "Golf" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A6E994931ACE8EB900092FD6;
+			productRefGroup = A6E9949D1ACE8EB900092FD6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A6E9949B1ACE8EB900092FD6 /* Golf */,
+				A6E994B01ACE8EB900092FD6 /* GolfTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A6E9949A1ACE8EB900092FD6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6E994F01ACEEF5600092FD6 /* WamblOut.storyboard in Resources */,
+				A6E994AC1ACE8EB900092FD6 /* LaunchScreen.xib in Resources */,
+				A6E994A91ACE8EB900092FD6 /* Images.xcassets in Resources */,
+				A6E994F21ACEF08800092FD6 /* WamblIn.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6E994AF1ACE8EB900092FD6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A6E994981ACE8EB900092FD6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A63A24931ACF294500DBAF58 /* HoleCtrl.swift in Sources */,
+				A6E994EB1ACEEC8B00092FD6 /* LoginCtrl.swift in Sources */,
+				A6E994A41ACE8EB900092FD6 /* SplashCtrl.swift in Sources */,
+				A63A24901ACF0FEB00DBAF58 /* NewRoundCtrl.swift in Sources */,
+				A6E994E41ACEBFBE00092FD6 /* Location.swift in Sources */,
+				A63A248D1ACF0DD900DBAF58 /* DashboardCtrl.swift in Sources */,
+				A6E994A21ACE8EB900092FD6 /* AppDelegate.swift in Sources */,
+				A6E994F51ACEF73C00092FD6 /* Globals.swift in Sources */,
+				A6E994E81ACEE8D800092FD6 /* Error.swift in Sources */,
+				A63A24881ACF00D400DBAF58 /* SignupCtrl.swift in Sources */,
+				A6E994E61ACEE86F00092FD6 /* Tools.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6E994AD1ACE8EB900092FD6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6E994B81ACE8EB900092FD6 /* GolfTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A6E994B31ACE8EB900092FD6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A6E9949B1ACE8EB900092FD6 /* Golf */;
+			targetProxy = A6E994B21ACE8EB900092FD6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A6E994AA1ACE8EB900092FD6 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A6E994AB1ACE8EB900092FD6 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A6E994B91ACE8EB900092FD6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: William Robinson (28YSU2FQFV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A6E994BA1ACE8EB900092FD6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: William Robinson (28YSU2FQFV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A6E994BC1ACE8EB900092FD6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = Golf/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Golf/Golf-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A6E994BD1ACE8EB900092FD6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = Golf/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Golf/Golf-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		A6E994BF1ACE8EB900092FD6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GolfTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Golf.app/Golf";
+			};
+			name = Debug;
+		};
+		A6E994C01ACE8EB900092FD6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GolfTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Golf.app/Golf";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A6E994971ACE8EB900092FD6 /* Build configuration list for PBXProject "Golf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6E994B91ACE8EB900092FD6 /* Debug */,
+				A6E994BA1ACE8EB900092FD6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A6E994BB1ACE8EB900092FD6 /* Build configuration list for PBXNativeTarget "Golf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6E994BC1ACE8EB900092FD6 /* Debug */,
+				A6E994BD1ACE8EB900092FD6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A6E994BE1ACE8EB900092FD6 /* Build configuration list for PBXNativeTarget "GolfTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6E994BF1ACE8EB900092FD6 /* Debug */,
+				A6E994C01ACE8EB900092FD6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A6E994941ACE8EB900092FD6 /* Project object */;
+}
