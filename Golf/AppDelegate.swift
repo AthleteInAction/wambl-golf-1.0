@@ -12,34 +12,15 @@ var root: UIWindow!
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
+    var window: UIWindow?
+    
     // Override point for customization after application launch.
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        root = UIWindow(frame: UIScreen.mainScreen().bounds)
+        root = window
         
         Parse.setApplicationId("ZLIHKPqBIVc18EXt6c2yk7Ex8iFWoKcBgwD1JjNy", clientKey: "T0OekrIYHvmeCH1ksbdwanFfWENxy3hTvsFig61y")
-        
-        if PFUser.currentUser() != nil {
-            
-            // USER IS LOGGED IN
-            var newStoryboard = UIStoryboard(name: "WamblIn", bundle: nil)
-            var vc = newStoryboard.instantiateViewControllerWithIdentifier("dashboard_ctrl") as DashboardCtrl
-            var nav = UINavigationController(rootViewController: vc)
-            root.rootViewController = nav
-            
-        } else {
-            
-            // USER IS LOGGED OUT
-            var newStoryboard = UIStoryboard(name: "WamblOut", bundle: nil)
-            var vc = newStoryboard.instantiateViewControllerWithIdentifier("login_ctrl") as LoginCtrl
-            root.rootViewController = vc
-            
-        }
-        
-        root.makeKeyAndVisible()
-        
-        UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
         
         return true
         
