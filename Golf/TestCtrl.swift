@@ -7,13 +7,20 @@
 //
 
 import UIKit
+import CoreLocation
 
-class TestCtrl: UIViewController {
-
+class TestCtrl: UIViewController, CLLocationManagerDelegate {
+    
+    var cloc: CLLocationManager = CLLocationManager()
+//    let region = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "XGPS150-2B0A09"), identifier: "Dual GPS")
+    let region = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "2097A628-EA36-443D-B2D8-E08CAA158EC4"), identifier: "Dual GPS")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        println("HELLO TEST!")
+        cloc.delegate = self
+        cloc.requestAlwaysAuthorization()
+        cloc.startRangingBeaconsInRegion(region)
         
     }
 
@@ -21,6 +28,14 @@ class TestCtrl: UIViewController {
         super.didReceiveMemoryWarning()
         
         
+        
+    }
+    
+    func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
+        
+        println("----------------")
+        println(beacons)
+        println("----------------")
         
     }
 
