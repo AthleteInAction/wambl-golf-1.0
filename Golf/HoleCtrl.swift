@@ -7,10 +7,16 @@
 //
 
 import UIKit
+import CoreLocation
+import AudioToolbox
 
-class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate,UIPickerViewDelegate {
+    
+    var cloc: CLLocationManager!
     
     var round: PFObject!
+    
+    @IBOutlet weak var progress: UIProgressView!
     
     var hole_number: Int!
     @IBOutlet weak var par: UISegmentedControl!
@@ -21,8 +27,29 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var scoreTxt: UILabel!
     var score: Int = 0
     var strokes: [PFObject] = []
+    var locations: [CLLocation] = []
+    var waiting: Bool = false
+    var usersLocation: CLLocation?
     
-    var location = Location(_accuracy: kCLLocationAccuracyBestForNavigation, _timeout: 20)
+    var club: String!
+    @IBOutlet weak var clubs: UIPickerView!
+    var clubsList: [String] = [
+        "Putter",
+        "60°",
+        "56°",
+        "52°",
+        "Pitching Wedge",
+        "9 Iron",
+        "8 Iron",
+        "7 Iron",
+        "6 Iron",
+        "5 Iron",
+        "4 Iron",
+        "3 Iron",
+        "3 Wood",
+        "Driver"
+    ]
+    var selectedClub: Int?
     
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -31,6 +58,21 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
         
         table.delegate = self
         table.dataSource = self
+        
+        clubs.delegate = self
+        
+        cloc = CLLocationManager()
+        
+        if cloc.delegate != nil {
+            println("PASSED")
+        } else {
+            println("SELF")
+            cloc.delegate = self
+        }
+        
+        cloc.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        cloc.requestAlwaysAuthorization()
+        cloc.startUpdatingLocation()
         
         parIndex = ((round["pars"] as Array<Int>)[hole_number-1]-3)
         if parIndex > -1 && parIndex <= 2 {
@@ -42,6 +84,7 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
         query.whereKey("round", equalTo: round)
         query.whereKey("hole", equalTo: hole_number)
         query.whereKey("user", equalTo: PFUser.currentUser())
+        query.orderByDescending("created_at")
         
         query.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]!, error: NSError!) -> Void in
@@ -56,8 +99,7 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
                     
                 }
                 
-                self.score = objects.count
-                self.scoreTxt.text = "Score: \(self.score)"
+                self.table.reloadData()
                 
             } else {
                 
@@ -70,11 +112,171 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
         }
         
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        if selectedClub != nil {
+            club = clubsList[selectedClub!]
+        } else {
+            club = clubsList.last
+            selectedClub = (clubsList.count-1)
+        }
+        clubs.selectRow(selectedClub!, inComponent: 0, animated: true)
+        
+    }
 
     override func didReceiveMemoryWarning(){
         super.didReceiveMemoryWarning()
         
         
+        
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        return clubsList.count
+        
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        
+        return clubsList[row] as String
+        
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        selectedClub = row
+        club = clubsList[selectedClub!]
+        
+    }
+    
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        
+        println("ERROR")
+        waiting = false
+        cloc.stopUpdatingLocation()
+        
+    }
+    
+    var affirm: Int = 0
+    var accuracy: CLLocationAccuracy = 10
+    var verify: Int = 5
+    var ll: CLLocation?
+    @IBOutlet weak var diffTxt: UILabel!
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        
+        pulse()
+        
+        let location = locations.first as CLLocation
+        
+        usersLocation = location
+        
+        if ll != nil && location.horizontalAccuracy <= accuracy {
+            affirm++
+            diffTxt.text = "DIFF: \(location.distanceFromLocation(ll).yd)"
+        }
+        
+        if ll != nil && location.distanceFromLocation(ll) > 0 {
+            
+            affirm = 0
+            
+        }
+        
+        if location.horizontalAccuracy > accuracy {
+            
+            affirm = 0
+            
+        }
+        
+        if location.horizontalAccuracy <= accuracy && affirm >= verify && waiting {
+            
+            saveStroke(location)
+            
+        }
+        
+        if saving {
+            
+            
+            
+        }
+        
+        ll = location
+        
+        var p: Float = Float(affirm) / Float(verify)
+        if p >= Float(1) {p = Float(1)}
+        if p < 0.1 {p = 0.05}
+        
+        progress.setProgress(p, animated: true)
+        
+        println("Hole: \(hole_number) :: Affirm: \(affirm) ::: \(location.horizontalAccuracy) :: \(location.timestamp)")
+        
+    }
+    
+    @IBOutlet weak var blink: UIView!
+    func pulse(){
+        
+        let w = CGFloat(80)
+        
+        UIView.animateWithDuration(0.2, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 5, options: nil, animations: {
+            self.blink.bounds.size.width = 100
+            },completion: { (s) -> Void in
+                
+                UIView.animateWithDuration(0.2, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 5, options: nil, animations: {
+                    
+                    self.blink.bounds.size.width = w
+                    
+                },completion: nil)
+                
+        })
+        
+    }
+    
+    var saving: Bool = false
+    func saveStroke(location: CLLocation){
+        
+        saving = true
+        waiting = false
+        cloc.stopUpdatingLocation()
+        
+        var stroke = PFObject(className:"Strokes")
+        
+        stroke["user"] = PFUser.currentUser()
+        stroke["round"] = self.round
+        stroke["hole"] = self.hole_number
+        stroke["par"] = (self.par.selectedSegmentIndex+3)
+        stroke["altitude"] = location.altitude
+        stroke["accuracy"] = location.horizontalAccuracy
+        stroke["desiredAccuracy"] = accuracy
+        stroke["club"] = club
+        stroke["point"] = PFGeoPoint(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        
+        stroke.saveInBackgroundWithBlock({ (success: Bool, error: NSError!) -> Void in
+            
+            if success {
+                
+                self.strokes.append(stroke)
+                
+                AudioServicesPlaySystemSound(4095)
+                
+            } else {
+                
+                Error.report(user: PFUser.currentUser(), error: error, alert: true)
+                
+            }
+            
+            self.loader.stopAnimating()
+            self.set.hidden = false
+            
+            self.table.reloadData()
+            
+            self.cloc.startUpdatingLocation()
+            
+            self.saving = false
+            
+            println("SAVED!")
+            
+        })
         
     }
 
@@ -85,6 +287,8 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
             var vc = storyboard?.instantiateViewControllerWithIdentifier("hole_ctrl") as HoleCtrl
             vc.hole_number = (hole_number+1)
             vc.round = round
+            vc.selectedClub = selectedClub
+            vc.cloc = cloc
             navigationController?.pushViewController(vc, animated: true)
             
         }
@@ -106,13 +310,50 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
-        let stroke = strokes[indexPath.row] as PFObject
         
-        cell.textLabel?.text = stroke.objectId
+        cell.selectionStyle = .None
+        
+        let stroke = strokes[indexPath.row] as PFObject
+        let currentPoint = stroke["point"] as PFGeoPoint
+        
+        var g = CLLocation(latitude: (currentPoint.latitude as CLLocationDegrees), longitude: (currentPoint.longitude as CLLocationDegrees))
+        
+        locations.append(g)
+        
+        if indexPath.row > 0 {
+            
+            let lastStroke = strokes[indexPath.row-1] as PFObject
+            var lastPoint = lastStroke["point"] as PFGeoPoint
+            
+            let l = lastPoint.location
+            let c = currentPoint.location
+            
+            let d: CLLocationDistance = c.distanceFromLocation(l)
+            
+            let cl: String = stroke["club"] as String
+            
+            cell.textLabel?.text = cl
+            cell.detailTextLabel?.text = "\(d.yd.rd(2)) yd"
+            
+        } else {
+            
+            cell.textLabel?.text = "Tee Box"
+            cell.detailTextLabel?.text = nil
+            
+        }
+        
         var p = stroke["point"] as PFGeoPoint
-        cell.detailTextLabel?.text = "\(p.longitude) : \(p.latitude)"
+        
+        setScore()
         
         return cell
+        
+    }
+    
+    func setScore(){
+        
+        score = strokes.count
+        scoreTxt.text = "Score: \(score)"
         
     }
     
@@ -128,9 +369,7 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
                     
                     self.strokes.removeAtIndex(indexPath.row)
                     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-                    
-                    self.score = self.strokes.count
-                    self.scoreTxt.text = "Score: \(self.score)"
+                    tableView.reloadData()
                     
                 } else {
                     
@@ -146,61 +385,10 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     @IBAction func setStroke(sender: UIButton){
         
+        waiting = true
+        
         loader.startAnimating()
         set.hidden = true
-        
-        location.get { (location, error) -> () in
-            
-            if let loc = location {
-                
-                var stroke = PFObject(className:"Strokes")
-                
-                stroke["user"] = PFUser.currentUser()
-                stroke["round"] = self.round
-                stroke["hole"] = self.hole_number
-                stroke["par"] = (self.par.selectedSegmentIndex+3)
-                stroke["point"] = PFGeoPoint(latitude: loc.coordinate.latitude, longitude: loc.coordinate.longitude)
-            
-                stroke.saveInBackgroundWithBlock({ (success: Bool, error: NSError!) -> Void in
-                    
-                    if success {
-                        
-                        self.strokes.append(stroke)
-                        self.score = self.strokes.count
-                        self.scoreTxt.text = "Score: \(self.score)"
-                        
-                    } else {
-                        
-                        
-                        
-                    }
-                    
-                    self.loader.stopAnimating()
-                    self.set.hidden = false
-                    
-                    self.table.reloadData()
-                    
-                })
-                
-            } else if let err = error {
-                
-                // ALERT USER TO ERROR
-                var errorAlert = UIAlertController(title: "Error", message: "GPS took too long.", preferredStyle: UIAlertControllerStyle.Alert)
-                
-                errorAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
-                    
-                    
-                    
-                }))
-                
-                root.rootViewController?.presentViewController(errorAlert, animated: true, completion: nil)
-                
-                self.loader.stopAnimating()
-                self.set.hidden = false
-                
-            }
-            
-        }
         
     }
     
@@ -223,6 +411,20 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 Error.report(user: PFUser.currentUser(), error: error, alert: true)
                 
             }
+            
+        }
+        
+    }
+    
+    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
+        
+        if motion == UIEventSubtype.MotionShake {
+            
+            println("Shake: \(hole_number)")
+            
+            AudioServicesPlaySystemSound(1350)
+            
+            setStroke(UIButton())
             
         }
         

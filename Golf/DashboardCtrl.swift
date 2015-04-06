@@ -25,6 +25,7 @@ class DashboardCtrl: UITableViewController, DashboardPTC {
         
         query.whereKey("user", equalTo: PFUser.currentUser())
         query.orderByDescending("date")
+        query.whereKey("status", notEqualTo: "deleted")
         
         query.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]!, error: NSError!) -> Void in
@@ -89,6 +90,33 @@ class DashboardCtrl: UITableViewController, DashboardPTC {
         vc.hole_number = 1
         vc.round = rounds[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let round = rounds[indexPath.row] as PFObject
+        
+        if editingStyle == .Delete {
+            
+            round["status"] = "deleted"
+            
+            round.saveInBackgroundWithBlock({ (success, error) -> Void in
+                
+                if success {
+                    
+                    self.rounds.removeAtIndex(indexPath.row)
+                    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                    
+                } else {
+                    
+                    Error.report(user: PFUser.currentUser(), error: error, alert: true)
+                    
+                }
+                
+            })
+            
+        }
         
     }
 

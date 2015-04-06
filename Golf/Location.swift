@@ -35,13 +35,13 @@ class Location : NSObject, CLLocationManagerDelegate {
     
     private func _didComplete(location: CLLocation?, error: NSError?) {
         
-        stop()
         didComplete(location: location, error: error)
         
     }
     
     internal func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!){
         
+        stop()
         _didComplete(nil, error: error)
         
     }
@@ -50,34 +50,17 @@ class Location : NSObject, CLLocationManagerDelegate {
         
         let location = locations.first as CLLocation
         
-        println("-------")
-        println(location)
-        println("-------")
-        
-        if (location.horizontalAccuracy <= 5){
-            timer.invalidate()
-            _didComplete(location, error: nil)
-        }
+        _didComplete(location, error: nil)
         
     }
     
-    func get(completion: LocationClosure){
-        
-        timer.invalidate()
-        timer = NSTimer.scheduledTimerWithTimeInterval(min, target: self, selector: "timedOut", userInfo: nil, repeats: false)
+    func monitor(completion: LocationClosure){
         
         didComplete = completion
         
-        locationManager.startUpdatingLocation()
-        
     }
     
+    func start(){locationManager.startUpdatingLocation()}
     func stop(){locationManager.stopUpdatingLocation()}
-    
-    internal func timedOut(){
-        
-        _didComplete(nil, error: NSError(domain: "Getting location took too long.", code: 87, userInfo: nil))
-        
-    }
     
 }
