@@ -201,9 +201,12 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="fkp-cM-VSu">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="fkp-cM-VSu">
                                 <rect key="frame" x="16" y="169" width="288" height="245"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="245" id="poR-0g-qk7"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="pEz-ck-3Ei" detailTextLabel="Yu7-aV-H4l" style="IBUITableViewCellStyleSubtitle" id="i54-RK-ERH">
                                         <rect key="frame" x="0.0" y="0.0" width="222" height="44"/>
@@ -228,33 +231,64 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zrv-XN-gWr">
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zrv-XN-gWr">
                                 <rect key="frame" x="0.0" y="398" width="320" height="162"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="162" id="40O-AA-oGh"/>
+                                </constraints>
                             </pickerView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progressViewStyle="bar" progress="0.050000000000000003" translatesAutoresizingMaskIntoConstraints="NO" id="5HV-Tc-zm4">
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.050000000000000003" translatesAutoresizingMaskIntoConstraints="NO" id="5HV-Tc-zm4">
                                 <rect key="frame" x="16" y="76" width="288" height="3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="0Et-jV-NyH"/>
+                                </constraints>
                             </progressView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Una-5m-c1P">
-                                <rect key="frame" x="110" y="72" width="100" height="3"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Una-5m-c1P">
+                                <rect key="frame" x="110" y="69" width="100" height="3"/>
                                 <color key="backgroundColor" red="1" green="0.56124148380000005" blue="0.2926985144" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="W8i-Fi-Ow7"/>
+                                    <constraint firstAttribute="height" constant="3" id="rPs-yB-iVK"/>
+                                </constraints>
                             </view>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="1" translatesAutoresizingMaskIntoConstraints="NO" id="BRv-uf-5an">
+                                <rect key="frame" x="16" y="73" width="288" height="3"/>
+                                <color key="tintColor" red="0.053720755250000002" green="1" blue="0.045824946450000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="URD-ij-Jo6"/>
+                                </constraints>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="WSf-wd-l1s" firstAttribute="top" secondItem="QNu-he-HuK" secondAttribute="bottom" constant="12" id="2bc-Am-QvD"/>
+                            <constraint firstItem="BRv-uf-5an" firstAttribute="trailing" secondItem="ddv-5l-WRN" secondAttribute="trailingMargin" id="37h-Ij-il5"/>
+                            <constraint firstItem="BRv-uf-5an" firstAttribute="top" secondItem="Una-5m-c1P" secondAttribute="bottom" constant="1" id="78U-9L-3Lh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="IeW-lG-hmZ" secondAttribute="trailing" id="C37-Vb-eXN"/>
                             <constraint firstItem="pz1-2b-tJg" firstAttribute="centerX" secondItem="WSf-wd-l1s" secondAttribute="centerX" constant="-0.5" id="FZY-Wb-N06"/>
+                            <constraint firstItem="zrv-XN-gWr" firstAttribute="top" secondItem="9GM-h7-uGv" secondAttribute="bottom" constant="243" id="Hxy-wE-wDf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="WSf-wd-l1s" secondAttribute="trailing" id="J76-jD-9w7"/>
+                            <constraint firstItem="zrv-XN-gWr" firstAttribute="leading" secondItem="ddv-5l-WRN" secondAttribute="leadingMargin" constant="-16" id="KTw-GG-Wkv"/>
                             <constraint firstItem="pz1-2b-tJg" firstAttribute="centerY" secondItem="WSf-wd-l1s" secondAttribute="centerY" id="Kis-uh-oNn"/>
+                            <constraint firstItem="fkp-cM-VSu" firstAttribute="trailing" secondItem="ddv-5l-WRN" secondAttribute="trailingMargin" id="N2u-D8-5ea"/>
                             <constraint firstItem="QNu-he-HuK" firstAttribute="top" secondItem="Eh2-vV-jjM" secondAttribute="bottom" constant="20" id="N9g-gI-L4H"/>
+                            <constraint firstItem="fkp-cM-VSu" firstAttribute="top" secondItem="9GM-h7-uGv" secondAttribute="bottom" constant="14" id="NNr-Ex-Hqj"/>
                             <constraint firstItem="IeW-lG-hmZ" firstAttribute="leading" secondItem="ddv-5l-WRN" secondAttribute="leadingMargin" id="W17-iQ-wTS"/>
+                            <constraint firstItem="5HV-Tc-zm4" firstAttribute="top" secondItem="BRv-uf-5an" secondAttribute="bottom" constant="1" id="WBz-PJ-zzK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9GM-h7-uGv" secondAttribute="trailing" id="XJk-XL-BJa"/>
+                            <constraint firstAttribute="centerX" secondItem="Una-5m-c1P" secondAttribute="centerX" id="ZbY-3s-d5b"/>
                             <constraint firstItem="WSf-wd-l1s" firstAttribute="centerY" secondItem="9GM-h7-uGv" secondAttribute="centerY" constant="0.5" id="cSf-ah-08V"/>
+                            <constraint firstItem="5HV-Tc-zm4" firstAttribute="trailing" secondItem="ddv-5l-WRN" secondAttribute="trailingMargin" id="eem-2v-WU4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zrv-XN-gWr" secondAttribute="trailing" constant="-16" id="etX-yS-QNE"/>
+                            <constraint firstItem="Una-5m-c1P" firstAttribute="top" secondItem="Eh2-vV-jjM" secondAttribute="bottom" constant="5" id="fcq-pv-X4Y"/>
+                            <constraint firstItem="BRv-uf-5an" firstAttribute="leading" secondItem="ddv-5l-WRN" secondAttribute="leadingMargin" id="ftr-xk-xf4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="QNu-he-HuK" secondAttribute="trailing" id="iWG-gR-wbF"/>
                             <constraint firstItem="9DS-Rh-LOT" firstAttribute="top" secondItem="IeW-lG-hmZ" secondAttribute="bottom" constant="2" id="jFe-LJ-8UN"/>
                             <constraint firstItem="9GM-h7-uGv" firstAttribute="leading" secondItem="WSf-wd-l1s" secondAttribute="trailing" id="mNj-0F-tMN"/>
+                            <constraint firstItem="5HV-Tc-zm4" firstAttribute="leading" secondItem="ddv-5l-WRN" secondAttribute="leadingMargin" id="onZ-9k-meJ"/>
                             <constraint firstItem="WSf-wd-l1s" firstAttribute="leading" secondItem="ddv-5l-WRN" secondAttribute="leadingMargin" id="vbP-Hs-yz7"/>
                             <constraint firstItem="QNu-he-HuK" firstAttribute="leading" secondItem="ddv-5l-WRN" secondAttribute="leadingMargin" id="vbb-jO-soe"/>
+                            <constraint firstItem="fkp-cM-VSu" firstAttribute="leading" secondItem="ddv-5l-WRN" secondAttribute="leadingMargin" id="xbS-jC-UKG"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -271,6 +305,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="acc" destination="BRv-uf-5an" id="hbK-V7-Zxq"/>
                         <outlet property="blink" destination="Una-5m-c1P" id="PEz-C0-L2F"/>
                         <outlet property="clubs" destination="zrv-XN-gWr" id="B8J-wj-kYb"/>
                         <outlet property="diffTxt" destination="IeW-lG-hmZ" id="YMV-ox-rOQ"/>

@@ -166,9 +166,9 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLoc
     @IBOutlet weak var diffTxt: UILabel!
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         
-        pulse()
-        
         let location = locations.first as CLLocation
+        
+        pulse(location)
         
         usersLocation = location
         
@@ -204,8 +204,15 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLoc
         ll = location
         
         var p: Float = Float(affirm) / Float(verify)
-        if p >= Float(1) {p = Float(1)}
-        if p < 0.1 {p = 0.05}
+        
+        switch p {
+        case 0...0.1:
+            p = 0.1
+        case 0.1...1:
+            break
+        default:
+            p = 1
+        }
         
         progress.setProgress(p, animated: true)
         
@@ -214,7 +221,33 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLoc
     }
     
     @IBOutlet weak var blink: UIView!
-    func pulse(){
+    @IBOutlet weak var acc: UIProgressView!
+    func pulse(location: CLLocation){
+        
+        var lac: Float = 0
+        switch location.horizontalAccuracy {
+        case 0...5:
+            lac = 1.0
+        case 5...10:
+            lac = 0.9
+        case 10...20:
+            lac = 0.8
+        case 20...40:
+            lac = 0.7
+        case 40...80:
+            lac = 0.6
+        case 80...160:
+            lac = 0.5
+        case 160...320:
+            lac = 0.4
+        case 320...640:
+            lac = 0.3
+        case 640...1280:
+            lac = 0.2
+        default:
+            lac = 0.1
+        }
+        acc.setProgress(lac, animated: true)
         
         let w = CGFloat(80)
         
@@ -248,7 +281,7 @@ class HoleCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLoc
         stroke["altitude"] = location.altitude
         stroke["accuracy"] = location.horizontalAccuracy
         stroke["desiredAccuracy"] = accuracy
-        stroke["club"] = club
+        if strokes.count > 0 {stroke["club"] = club}
         stroke["point"] = PFGeoPoint(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         
         stroke.saveInBackgroundWithBlock({ (success: Bool, error: NSError!) -> Void in
